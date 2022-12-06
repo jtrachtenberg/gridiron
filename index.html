@@ -85,3 +85,79 @@
         const pieceRect = piece.getBoundingClientRect();
         const gridX = Math.floor((pieceRect.x - gridRect.x) / 110);
         const gridY = Math.floor((piece
+                                  
+// Create grid
+const grid = [
+[0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0]
+];
+
+// Create arrows at each grid intersection
+const arrows = [
+[1, 2, 3, 4, 5],
+[1, 2, 3, 4, 5],
+[1, 2, 3, 4, 5],
+[1, 2, 3, 4, 5],
+[1, 2, 3, 4, 5]
+];
+
+// Create round pieces
+const pieces = [
+{ x: 0, y: 0, direction: 0 },
+{ x: 4, y: 4, direction: 0 }
+];
+
+// Click handler for arrows
+const handleClick = (x, y) => {
+// Spin arrow clockwise
+arrows[x][y] = (arrows[x][y] + 1) % 4;
+};
+
+// Move pieces
+const movePieces = () => {
+pieces.forEach(piece => {
+// Get current arrow at piece's location
+const arrow = arrows[piece.x][piece.y];  
+  
+// Update piece's direction based on current arrow
+switch (arrow) {
+  case 0:
+    piece.direction = (piece.direction + 3) % 4;
+    break;
+  case 1:
+    piece.direction = (piece.direction + 0) % 4;
+    break;
+  case 2:
+    piece.direction = (piece.direction + 1) % 4;
+    break;
+  case 3:
+    piece.direction = (piece.direction + 2) % 4;
+    break;
+}
+
+// Move piece based on updated direction
+switch (piece.direction) {
+  case 0:
+    piece.y--;
+    break;
+  case 1:
+    piece.x++;
+    break;
+  case 2:
+    piece.y++;
+    break;
+  case 3:
+    piece.x--;
+    break;
+}
+
+  });
+};
+
+// Game loop
+setInterval(() => {
+movePieces();
+}, 1000);
