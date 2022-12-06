@@ -1,0 +1,35 @@
+// Set the dimensions of the grid
+const width = 20;
+const height = 20;
+
+// Create a new canvas element
+const canvas = document.createElement('canvas');
+
+// Set the canvas width and height
+canvas.width = width * 50; // Each square will be 50px wide
+canvas.height = height * 50; // Each square will be 50px tall
+
+// Get the 2D drawing context
+const ctx = canvas.getContext('2d');
+
+// Set the fill style to yellow
+ctx.fillStyle = 'yellow';
+
+// Loop through the grid and draw a yellow square at each position
+for (let x = 0; x < width; x++) {
+  for (let y = 0; y < height; y++) {
+    // Calculate the x and y position of the square
+    const posX = x * 50;
+    const posY = y * 50;
+
+    // Draw the square
+    ctx.fillRect(posX, posY, 50, 50);
+  }
+}
+
+// Set the background color of the canvas to black
+ctx.fillStyle = 'black';
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+// Add the canvas to the document
+document.body.appendChild(canvas);
