@@ -27,6 +27,39 @@ for (let x = 0; x < width; x++) {
   }
 }
 
+// Set the line width and stroke style for the arrows
+ctx.lineWidth = 3;
+ctx.strokeStyle = 'white';
+
+// Loop through the grid and draw an arrow at each intersection
+for (let x = 0; x < width; x++) {
+  for (let y = 0; y < height; y++) {
+    // Calculate the x and y position of the square
+    const posX = x * 50;
+    const posY = y * 50;
+
+    // Save the current drawing state
+    ctx.save();
+
+    // Move the origin to the center of the square
+    ctx.translate(posX + 25, posY + 25);
+
+    // Rotate the canvas 45 degrees
+    ctx.rotate(45 * Math.PI / 180);
+
+    // Draw the arrow
+    ctx.beginPath();
+    ctx.moveTo(-15, -15);
+    ctx.lineTo(15, 15);
+    ctx.moveTo(15, -15);
+    ctx.lineTo(-15, 15);
+    ctx.stroke();
+
+    // Restore the previous drawing state
+    ctx.restore();
+  }
+}
+
 // Set the background color of the canvas to black
 ctx.fillStyle = 'black';
 ctx.fillRect(0, 0, canvas.width, canvas.height);
